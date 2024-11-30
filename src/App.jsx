@@ -28,7 +28,7 @@ function App() {
   return (
     <>
       <Header />
-      <div className="grid grid-cols-12 min-h-screen">
+      <div className="md:grid md:grid-cols-12 flex flex-col min-h-screen">
         <SidebarComponent setRowData={setRowData} setTotal={setTotal} />
         <Main
           rowData={rowData}

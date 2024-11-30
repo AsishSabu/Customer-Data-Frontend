@@ -30,8 +30,7 @@ const SidebarComponent = ({ setRowData, setTotal }) => {
   }, [ageFilter]);
 
   return (
-    <div className="h-screen col-span-3  text-black flex flex-col">
-      {/* Search Box */}
+    <div className="md:h-screen md:col-span-3 row-span-2  text-black ">
       <div className="mt-2 p-2 mx-auto w-full ">
         <SearchForm
           state={searchTerm}
@@ -39,13 +38,12 @@ const SidebarComponent = ({ setRowData, setTotal }) => {
           handleSubmit={handleFilter}
         />
       </div>
+      <div className="md:px-4">
+        <p className="font-medium w-fit mb-2 mx-auto">Filter by Age</p>
+        <div className="space-y-2 md:flex md:flex-col flex flex-row gap-5 md:w-full  w-fit mx-auto">
 
-      {/* Filters */}
-      <div className="p-4">
-        <p className="font-medium mb-2">Filter by Age</p>
-        <div className="space-y-2">
           <button
-            className={`w-full p-2 rounded-md ${
+            className={`md:w-full p-2 rounded-md mt-2 ${
               ageFilter[0] === 0 && ageFilter[1] === 20
                 ? "bg-[#7a81be]"
                 : "bg-gray-300"
@@ -53,11 +51,10 @@ const SidebarComponent = ({ setRowData, setTotal }) => {
             onClick={() => {
               setAgeFilter([0, 20]);
             }}
-          >
-            0 - 20
+          > 0 - 20
           </button>
           <button
-            className={`w-full p-2 rounded-md ${
+            className={`md:w-full p-2 rounded-md ${
               ageFilter[0] === 21 && ageFilter[1] === 40
                 ? "bg-[#7a81be]"
                 : "bg-gray-300"
@@ -69,7 +66,7 @@ const SidebarComponent = ({ setRowData, setTotal }) => {
             21 - 40
           </button>
           <button
-            className={`w-full p-2 rounded-md ${
+            className={`md:w-full p-2 rounded-md ${
               ageFilter[0] === 41 && ageFilter[1] === 60
                 ? "bg-[#7a81be]"
                 : "bg-gray-300"
@@ -81,7 +78,7 @@ const SidebarComponent = ({ setRowData, setTotal }) => {
             41 - 60
           </button>
           <button
-            className={`w-full p-2 rounded-md ${
+            className={`md:w-full p-2 rounded-md ${
               !ageFilter ? "bg-[#7a81be]" : "bg-gray-300"
             }`}
             onClick={() => {

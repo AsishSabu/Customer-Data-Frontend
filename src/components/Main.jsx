@@ -15,9 +15,10 @@ const Main = ({ rowData,currentPage,setCurrentPage,total }) => {
     setCurrentPage(page);
   };
   return (
-    <div className="mt-4  min-h-screen col-span-9">
-    <div className="bg-white shadow-md rounded-lg overflow-hidden border border-gray-200 h-3/4">
-      <table className="min-w-full bg-white ">
+<div className="mt-4 min-h-screen md:col-span-9 row-span-10">
+  <div className="hidden md:block bg-white shadow-md rounded-lg overflow-hidden border border-gray-200 h-3/4">
+    <div className="overflow-x-auto">
+      <table className="min-w-full bg-white">
         <thead className="bg-[#03346E] text-white">
           <tr>
             {colDefs.map((col, index) => (
@@ -62,18 +63,45 @@ const Main = ({ rowData,currentPage,setCurrentPage,total }) => {
         </tbody>
       </table>
     </div>
-    <div className="flex justify-center py-4">
-        <Stack spacing={2}>
-          <Pagination
-            count={Math.ceil(total / 10)}
-            page={currentPage}
-            onChange={handlePageChange}
-            variant="outlined"
-            shape="rounded"
-          />
-        </Stack>
-      </div>
-    </div>
+  </div>
+  <div className="block md:hidden">
+    {rowData.length > 0 ? (
+      rowData.map((row, rowIndex) => (
+        <div
+          key={rowIndex}
+          className="bg-white shadow-md rounded-lg overflow-hidden mx-2 border border-gray-200 mb-4 p-4"
+        >
+          {colDefs.map((col, colIndex) => (
+            <div key={colIndex} className="mb-2 grid grid-cols-2">
+              <span className="block text-sm font-medium text-gray-700">
+                {col.headerName}:
+              </span>
+              <span className="block text-sm text-gray-900">
+                : {row[col.field]}
+              </span>
+            </div>
+          ))}
+        </div>
+      ))
+    ) : (
+      <div className="text-center text-gray-500 py-10">No data available</div>
+    )}
+  </div>
+
+  {/* Pagination */}
+  <div className="flex justify-center py-4">
+    <Stack spacing={2}>
+      <Pagination
+        count={Math.ceil(total / 10)}
+        page={currentPage}
+        onChange={handlePageChange}
+        variant="outlined"
+        shape="rounded"
+      />
+    </Stack>
+  </div>
+</div>
+
   );
 };
 
