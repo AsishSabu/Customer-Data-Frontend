@@ -3,9 +3,10 @@ import SearchForm from "./SearchBox";
 import axios from "axios";
 import { formatDate } from "../utils/formatDate";
 
-const SidebarComponent = ({ setRowData, setTotal }) => {
+const SidebarComponent = ({ setRowData, setTotal,setLoading }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [ageFilter, setAgeFilter] = useState("");
+
 
   // Function to fetch filtered data
   const handleFilter = () => {
@@ -26,7 +27,9 @@ const SidebarComponent = ({ setRowData, setTotal }) => {
       .catch((error) => console.error("Error fetching data:", error));
   };
   useEffect(() => {
+    setLoading(true)
     handleFilter();
+    setLoading(false)
   }, [ageFilter]);
 
   return (
